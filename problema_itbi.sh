@@ -1,4 +1,4 @@
-F="$HOME/etc/hosts"
+F=$1
  
 if [ ! -f "$F" ]; then
     echo "Fisier lipsa: $F"
@@ -6,8 +6,8 @@ if [ ! -f "$F" ]; then
 fi
  
 check_ip() {
-    n="$1"
-    ipf="$2"
+    n="$2"
+    ipf="$3"
     r=$(nslookup "$n" 2>/dev/null | awk '/^Address:/{x=$2} END{if(x!="")print x}')
     if [ -z "$r" ]; then
         return 2
